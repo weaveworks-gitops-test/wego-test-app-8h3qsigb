@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-rvt04s
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-rvt04s
+  namespace: my-nginx-rvt04s
+  labels:
+    name: nginx-rvt04s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-rvt04s
+  template:
+    metadata:
+      namespace: my-nginx-rvt04s
+      labels:
+        name: nginx-rvt04s
+    spec:
+      containers:
+      - name: nginx-rvt04s
+        image: nginx
+        ports:
+        - containerPort: 80
+
